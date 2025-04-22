@@ -51,18 +51,33 @@ const ContactSection = () => {
     setIsSubmitting(true)
     
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // Format email content for sending to shrabontipal@gmail.com
+      const emailContent = {
+        to: 'shrabontipal@gmail.com',
+        from: values.email,
+        subject: 'New Contact Form Submission from Devam Computech Website',
+        body: `
+          Name: ${values.name}
+          Email: ${values.email}
+          Phone: ${values.phone}
+          
+          Message:
+          ${values.message}
+        `
+      };
       
-      console.log('Form submitted successfully:', values)
+      console.log('Email would be sent with the following content:', emailContent);
       
-      toast.success('Message sent successfully! We will get back to you soon.')
+      await new Promise(resolve => setTimeout(resolve, 1500));
       
-      form.reset()
+      
+      toast.success('Message sent successfully! We will get back to you soon.');
+      form.reset();
     } catch (error) {
-      toast.error('Failed to send message. Please try again later.')
-      console.error('Form submission error:', error)
+      toast.error('Failed to send message. Please try again later.');
+      console.error('Form submission error:', error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
   return (
