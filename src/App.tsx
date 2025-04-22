@@ -5,6 +5,7 @@ import CoursesSection from './components/layout/CoursesSection'
 import TestimonialsSection from './components/layout/TestimonialsSection'
 import ContactSection from './components/layout/ContactSection'
 import Footer from './components/layout/Footer'
+import { Toaster } from 'sonner'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <ContactSection />
       </main>
       <Footer />
+      <Toaster position="top-right" />
     </div>
   )
 }
