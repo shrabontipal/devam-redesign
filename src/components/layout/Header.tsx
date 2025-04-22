@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const Header = () => {
-  const [activeTab, setActiveTab] = useState('home')
+  const location = useLocation()
   
   return (
     <header className="bg-white shadow-md sticky top-0 z-50 py-4">
@@ -22,60 +23,67 @@ const Header = () => {
           <nav className="hidden md:block">
             <ul className="flex">
               <li className="mx-4">
-                <a 
-                  href="#" 
-                  className={`font-medium relative pb-1 ${activeTab === 'home' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
-                  onClick={() => setActiveTab('home')}
+                <Link 
+                  to="/" 
+                  className={`font-medium relative pb-1 ${location.pathname === '/' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
                 >
-                  Home
-                </a>
+                  <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                    Home
+                  </motion.span>
+                </Link>
               </li>
               <li className="mx-4">
-                <a 
-                  href="#" 
-                  className={`font-medium relative pb-1 ${activeTab === 'about' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
-                  onClick={() => setActiveTab('about')}
+                <Link 
+                  to="/about" 
+                  className={`font-medium relative pb-1 ${location.pathname === '/about' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
                 >
-                  About Us
-                </a>
+                  <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                    About Us
+                  </motion.span>
+                </Link>
               </li>
               <li className="mx-4">
-                <a 
-                  href="#" 
-                  className={`font-medium relative pb-1 ${activeTab === 'courses' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
-                  onClick={() => setActiveTab('courses')}
+                <Link 
+                  to="/courses" 
+                  className={`font-medium relative pb-1 ${location.pathname === '/courses' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
                 >
-                  Courses
-                </a>
+                  <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                    Courses
+                  </motion.span>
+                </Link>
               </li>
               <li className="mx-4">
-                <a 
-                  href="#" 
-                  className={`font-medium relative pb-1 ${activeTab === 'blog' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
-                  onClick={() => setActiveTab('blog')}
+                <Link 
+                  to="/blog" 
+                  className={`font-medium relative pb-1 ${location.pathname === '/blog' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
                 >
-                  Blog
-                </a>
+                  <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                    Blog
+                  </motion.span>
+                </Link>
               </li>
               <li className="mx-4">
-                <a 
-                  href="#" 
-                  className={`font-medium relative pb-1 ${activeTab === 'contact' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
-                  onClick={() => setActiveTab('contact')}
+                <Link 
+                  to="/contact" 
+                  className={`font-medium relative pb-1 ${location.pathname === '/contact' ? 'text-blue-600 after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:bottom-0 after:left-0' : 'text-gray-800 hover:text-blue-600'}`}
                 >
-                  Contact
-                </a>
+                  <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                    Contact
+                  </motion.span>
+                </Link>
               </li>
             </ul>
           </nav>
           
           <div>
-            <a 
-              href="#contact" 
+            <Link 
+              to="/contact" 
               className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-transparent hover:text-blue-600 border-2 border-blue-600 transition-all duration-300"
             >
-              Get Started
-            </a>
+              <motion.span whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                Get Started
+              </motion.span>
+            </Link>
           </div>
         </div>
       </div>
