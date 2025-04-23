@@ -1,0 +1,56 @@
+/* Orange/Gold theme based on logo */
+
+/* Override Tailwind classes with our theme colors */
+.bg-blue-600 {
+  background-color: hsl(var(--primary-color)) !important;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: hsl(var(--primary-dark)) !important;
+}
+
+.text-blue-600 {
+  color: hsl(var(--primary-color)) !important;
+}
+
+.hover\:text-blue-600:hover {
+  color: hsl(var(--primary-color)) !important;
+}
+
+.border-blue-600 {
+  border-color: hsl(var(--primary-color)) !important;
+}
+
+.after\:bg-blue-600::after {
+  background-color: hsl(var(--primary-color)) !important;
+}
+
+/* Background colors */
+.bg-gray-50 {
+  background-color: hsl(var(--background-light)) !important;
+}
+
+.bg-gray-100 {
+  background-color: hsl(var(--background-light) / 0.8) !important;
+}
+
+/* Hero section with gradient background */
+#hero {
+  background: linear-gradient(135deg, hsl(var(--background-light)) 0%, hsl(var(--background-light) / 0.7) 100%) !important;
+}
+
+/* Feature cards */
+.feature-card {
+  background-color: hsl(var(--background-light)) !important;
+  border-color: hsl(var(--primary-color) / 0.2) !important;
+}
+
+/* Icon colors */
+.icon-primary {
+  color: hsl(var(--primary-color)) !important;
+}
+
+/* Footer adjustments */
+footer {
+  background-color: hsl(var(--text-dark)) !important;
+}

@@ -3,8 +3,10 @@
 @tailwind utilities;
 @layer base {
   :root {
-    --radius: 0.5rem
-  ;
+    /* Base variables */
+    --radius: 0.5rem;
+    
+    /* Sidebar variables (keeping original) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -12,7 +14,17 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Orange/Gold theme colors */
+    --primary-color: 35 80% 57%;  /* #e8a23d */
+    --primary-dark: 35 67% 49%;   /* #d08c2a */
+    --primary-light: 35 85% 65%;  /* #f2b85c */
+    --accent-color: 217 57% 42%;  /* #2d5ca8 */
+    --background-light: 40 100% 97%; /* #fff9f0 */
+    --text-dark: 0 0% 20%;        /* #333333 */
+  }
+  
   .dark {
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -21,7 +33,7 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
