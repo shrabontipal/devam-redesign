@@ -171,9 +171,11 @@ const ContactSection = () => {
                       <FormLabel htmlFor="name">Full Name</FormLabel>
                       <FormControl>
                         <Input 
+                          id="name"
                           placeholder="Your name" 
                           {...field} 
                           className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                          data-testid="input-name"
                         />
                       </FormControl>
                       <FormMessage />
@@ -189,10 +191,12 @@ const ContactSection = () => {
                       <FormLabel htmlFor="email">Email Address</FormLabel>
                       <FormControl>
                         <Input 
+                          id="email"
                           type="email" 
                           placeholder="Your email" 
                           {...field} 
                           className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                          data-testid="input-email"
                         />
                       </FormControl>
                       <FormMessage />
@@ -208,10 +212,12 @@ const ContactSection = () => {
                       <FormLabel htmlFor="phone">Phone Number</FormLabel>
                       <FormControl>
                         <Input 
+                          id="phone"
                           type="tel" 
                           placeholder="Your phone" 
                           {...field} 
                           className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                          data-testid="input-phone"
                         />
                       </FormControl>
                       <FormMessage />
@@ -227,10 +233,12 @@ const ContactSection = () => {
                       <FormLabel htmlFor="message">Message</FormLabel>
                       <FormControl>
                         <Textarea 
+                          id="message"
                           placeholder="Your message" 
                           {...field} 
                           className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors resize-y"
                           rows={4}
+                          data-testid="input-message"
                         />
                       </FormControl>
                       <FormMessage />
@@ -242,6 +250,7 @@ const ContactSection = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
+                  data-testid="submit-button"
                 >
                   {isSubmitting ? 'Sending...' : 'Submit Your Query'}
                 </Button>
