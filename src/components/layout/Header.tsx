@@ -12,7 +12,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <img 
-              src="/attachments/33c141a0-8d7d-449a-b8ba-9a8607344b10/image.png" 
+              src="/images/logo.png" 
               alt="Devam Computech Logo" 
               className="w-14 h-14 mr-4"
               data-testid="logo"

@@ -9,9 +9,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <img 
-                src="https://devam.tech/static/media/logo.a9e1c5e9.png" 
+                src="/images/logo.png" 
                 alt="Devam Computech Logo" 
                 className="w-12 h-12 mr-3 bg-white rounded-full p-1"
+                data-testid="footer-logo"
               />
               <h3 className="text-xl font-bold">Devam Computech</h3>
             </div>
