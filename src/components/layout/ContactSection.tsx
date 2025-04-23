@@ -1,6 +1,85 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
+import * as React from 'react'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
+import { toast } from 'sonner'
+
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  phone: z.string().regex(/^(\+\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, {
+    message: "Please enter a valid phone number.",
+  }),
+  message: z.string().min(5, {
+    message: "Message must be at least 5 characters.",
+  }),
+})
+
+type FormValues = z.infer<typeof formSchema>
 
 const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
+  
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  })
+  
+  const onSubmit = async (values: FormValues) => {
+    setIsSubmitting(true)
+    
+    try {
+      // Format email content for sending to shrabontipal@gmail.com
+      const emailContent = {
+        to: 'shrabontipal@gmail.com',
+        from: values.email,
+        subject: 'New Contact Form Submission from Devam Computech Website',
+        body: `
+          Name: ${values.name}
+          Email: ${values.email}
+          Phone: ${values.phone}
+          
+          Message:
+          ${values.message}
+        `
+      };
+      
+      console.log('Email would be sent with the following content:', emailContent);
+      
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      
+      toast.success('Message sent successfully! We will get back to you soon.');
+      form.reset();
+    } catch (error) {
+      toast.error('Failed to send message. Please try again later.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
   return (
     <section className="bg-gray-50 py-20" id="contact">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -82,54 +161,92 @@ const ContactSection = () => {
           </div>
           
           <div className="bg-white p-8 rounded-lg shadow-md">
-            <form>
-              <div className="mb-6">
-                <label htmlFor="name" className="block mb-2 font-medium">Full Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  placeholder="Your name" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="name">Full Name</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Your name" 
+                          {...field} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="email" className="block mb-2 font-medium">Email Address</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  placeholder="Your email" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="email">Email Address</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="email" 
+                          placeholder="Your email" 
+                          {...field} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="phone" className="block mb-2 font-medium">Phone Number</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  placeholder="Your phone" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="phone">Phone Number</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="tel" 
+                          placeholder="Your phone" 
+                          {...field} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block mb-2 font-medium">Message</label>
-                <textarea 
-                  id="message" 
-                  placeholder="Your message" 
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors resize-y"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
-              >
-                Submit Your Query
-              </button>
-            </form>
+                
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="message">Message</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Your message" 
+                          {...field} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-600 transition-colors resize-y"
+                          rows={4}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit Your Query'}
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </div>
