@@ -9,7 +9,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <img 
-              src="https://devam.tech/static/media/logo.a9e1c5e9.png" 
+              src="/images/logo.png" 
               alt="Devam Computech Logo" 
               className="w-14 h-14 mr-4"
             />
